@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<head>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css" integrity="sha512-0H1C2wjjtLx7UWv8XlmK5B4SX+BhOKVyd2FiJ5F3e2kqTO5YItd1EzL+KLknagQeZrUfVcEPFidG6xnUvDfJTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/login.css">
+</th:block>
+
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+    </script>
+
+</th:block>
+<title>로그인</title>
+</head>
+
+<div layout:fragment="content" class="content">
+
+<form role="form" method="post" action="/user/login">
+    <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+    <div class="form-group">
+        <label for="email">이메일주소</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="이메일을 입력해주세요" autocomplete="email">
+    </div>
+    <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해주세요" autocomplete="current-password">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <button type="button" class="btn btn-primary" onClick="location.href='/user/joinCheck'">회원가입</button>
+    <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</form>
+
+</div>
+
+</html>

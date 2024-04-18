@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- 제목을 표시할 TextView -->
+    <TextView
+        android:id="@+id/recyclerTitle_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <!-- 작성자를 표시할 TextView -->
+    <TextView
+        android:id="@+id/recyclerWriter_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp" />
+
+    <!-- 등록 날짜를 표시할 TextView -->
+    <TextView
+        android:id="@+id/recyclerRegdate_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
+
+</LinearLayout>

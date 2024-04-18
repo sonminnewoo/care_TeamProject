@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+
+<div layout:fragment="content" class="content">
+	<div class="container mt-3">
+		<h2>자유게시판</h2>
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-secondary btn-sm" type="button"
+				onclick="writeform()">글 쓰기</button>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="board : ${boards}">
+					<td th:text="${board.num}"></td>
+					<td><a th:href="@{boardview/{num}(num=${board.num})}"
+						th:text="${board.title}"></a></td>
+					<td th:text="${board.user.name}"></td>
+					<td><span
+						th:text="${#dates.format(board.regdate, 'yyyy-MM-dd')}"></span></td>
+					<td th:text="${board.hitcount}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+ 		<!-- 페이징 -->
+	<div class="pagination d-flex justify-content-center">
+            <ul class="pagination">
+            <!-- 첫 번째 페이지 가는 것 -->
+             <li class="page-item">
+                <a 
+                th:href="@{/board/boardlist(page=1)}">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+             </li>
+             <!-- 직전 페이지 -->
+             <li class="page-item">
+                <a th:href="${boards.first} ? '#' : @{/board/boardlist(page=${boards.number})}">
+                이전
+                </a>
+             </li>
+             <!-- 숫자 페이지 -->
+                <li class="page-item">
+                   <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+                     <span th:if="${page == boards.number + 1}" th:text="${page}"></span>
+                     <span th:unless="${page == boards.number + 1}">
+                        <a th:href="@{/board/boardlist(page=${page})}" th:text="${page}"></a>
+                     </span>
+                  </span>
+                </li>
+             <!-- 직후 페이지 -->   
+             <li class="page-item">
+                <a  th:href="${boards.last} ? '#' : @{/board/boardlist(page=${boards.number + 2})}">
+                다음</a>
+             </li>
+             <!-- 맨 끝 -->
+             <li class="page-item">
+                <a  th:href="@{/board/boardlist(page=${boards.totalPages})}">
+                &raquo;</a>
+             </li>
+          </ul>
+          </div>
+
+
+		<!-- 하단 검색창 -->
+		<div>
+			<form class="d-flex justify-content-between" action="list"
+				method="get">
+				<select class="form-select" name="field">
+					<option value="content">내용</option>
+					<option value="title">제목</option>
+				</select> <input type="text" class="form-control" id="word"
+					placeholder="Enter Word" name="word">
+				<button class="btn btn-secondary btn-sm">Search</button>
+			</form>
+		</div>
+
+		<script>
+			function writeform() {
+				location.href = "/board/write"
+
+			}
+		</script>
+
+	</div>
+</div>
+</html>

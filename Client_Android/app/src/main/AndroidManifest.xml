@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ElderlyCare"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".mypage.ui.SeniorMyInfoFragment"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.InfoActivity" />
+        <activity android:name=".ui.NavItem1Activity" />
+        <activity android:name=".ui.NavItem2Activity" />
+        <activity android:name=".board.ui.ListActivity" />
+        <activity android:name=".board.ui.DetailActivity" />
+        <activity android:name=".board.ui.WriteActivity" />
+        <activity android:name=".matching.view.CaregiverDetailActivity" />
+        <activity android:name=".matching.view.FindCaregiversActivity" />
+        <activity android:name=".matching.view.FindJobsActivity" />
+        <activity android:name=".matching.view.MatchingDetailActivity" />
+        <activity android:name=".matching.view.RequestMatchingActivity" />
+        <activity android:name=".notice.view.NoticeActivity" />
+        <activity android:name=".notice.view.NoticeDetailActivity" />
+        <activity android:name=".user.view.UserLoginActivity" />
+        <activity android:name=".mypage.ui.SeniorMypageActivity" />
+        <activity android:name=".mypage.ui.CaregiverMypageActivity" />
+        <activity android:name=".user.view.UserRegisterActivity" />
+        <activity android:name=".user.view.UserChooseActivity" />
+        <activity android:name=".user.view.UserCheckActivity" />
+    </application>
+
+</manifest>

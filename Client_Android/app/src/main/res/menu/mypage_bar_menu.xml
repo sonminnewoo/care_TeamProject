@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/goHome"
+        android:title="홈으로" />
+    <item
+        android:id="@+id/goGetCare"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="구인" />
+    <item
+        android:id="@+id/goGetJob"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="구직" />
+
+    <item
+        android:id="@+id/goBoard"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="자유게시판" />
+</menu>

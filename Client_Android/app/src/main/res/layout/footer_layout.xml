@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:background="@color/dark_gray">
+
+    <!-- 2024 Elderly Care WebSite -->
+    <TextView
+        android:id="@+id/textView_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="2024 Elderly Care WebSite"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Social Media Buttons -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal">
+
+        <!-- Twitter Button -->
+        <ImageView
+            android:contentDescription="@string/contentDescription"
+            android:id="@+id/imageView_twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/x_icon" />
+
+        <!-- Facebook Button -->
+        <ImageView
+            android:contentDescription="@string/contentDescription"
+            android:id="@+id/imageView_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/facebook_icon" />
+
+        <!-- LinkedIn Button -->
+        <ImageView
+            android:contentDescription="@string/contentDescription"
+            android:id="@+id/imageView_linkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:src="@drawable/linkedin_icon" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+

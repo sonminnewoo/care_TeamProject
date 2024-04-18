@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+
+<div layout:fragment="content" class="content">	
+<div class="container mt-3">
+    <h2>공지사항</h2> 
+<div class="d-flex justify-content-end">
+    <button class="btn btn-secondary btn-sm" type= "button" onclick="loginform()">글 쓰기</button>
+</div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="notice, stat : ${notices}">
+            <td th:text="${notice.num}"></td> 
+            <td><a th:href="@{view/{num}(num=${notice.num})}" th:text="${notice.title}"></a></td>
+            <td th:text="${notice.user.role}"></td>
+            <td><span th:text="${#dates.format(notice.regdate, 'yyyy-MM-dd')}"></span></td>
+            <td th:text="${notice.hitcount}"></td>
+        </tr>
+        </tbody>
+        
+    </table>
+    <!-- 페이징 -->
+	<div class="pagination d-flex justify-content-center">
+            <ul class="pagination">
+            <!-- 첫 번째 페이지 가는 것 -->
+             <li class="page-item">
+                <a 
+                th:href="@{/notice/list(page=1)}">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+             </li>
+             <!-- 직전 페이지 -->
+             <li class="page-item">
+                <a th:href="${notices.first} ? '#' : @{/notice/list(page=${notices.number})}">
+                이전
+                </a>
+             </li>
+             <!-- 숫자 페이지 -->
+                <li class="page-item">
+                   <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+                     <span th:if="${page == notices.number + 1}" th:text="${page}"></span>
+                     <span th:unless="${page == notices.number + 1}">
+                        <a th:href="@{/notice/list(page=${page})}" th:text="${page}"></a>
+                     </span>
+                  </span>
+                </li>
+             <!-- 직후 페이지 -->   
+             <li class="page-item">
+                <a  th:href="${notices.last} ? '#' : @{/notice/list(page=${notices.number + 2})}">
+                다음</a>
+             </li>
+             <!-- 맨 끝 -->
+             <li class="page-item">
+                <a  th:href="@{/notice/list(page=${notices.totalPages})}">
+                &raquo;</a>
+             </li>
+          </ul>
+          </div>
+
+
+    
+    
+    
+     <!-- 오른쪽 하단 검색창 -->
+    <div>
+        <form class="d-flex justify-content-between" action="list" method="get">
+            <select class="form-select" name="field">
+                <option value="content">내용</option>
+                <option value="title">제목</option>
+            </select>
+            <input type="text" class="form-control" id="word" placeholder="Enter Word" name="word">
+            <button class="btn btn-secondary btn-sm">Search</button>
+        </form>
+        </div>
+
+
+		<script>
+			function loginform() {
+				location.href = "/notice/insert"
+
+			}
+		</script>
+	</div>
+</div>
+</html>

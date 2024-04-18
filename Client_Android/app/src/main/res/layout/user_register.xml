@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:text="@string/register"
+                style="@style/TitleTextStyle" />
+            <!--#user(유저)입력부분-->
+            <EditText
+                android:hint="@string/name"
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:hint="@string/email"
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="16dp" />
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:inputType="textPostalAddress"
+                android:layout_marginBottom="16dp"/>
+
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/passwordconfirm"
+                android:inputType="textPassword"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- 지역 선택 Spinner -->
+            <Spinner
+                android:id="@+id/spinnerCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <!-- 성별 선택 Spinner -->
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phoneNumber"
+                android:inputType="phone"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- 이미지 URL 입력 필드 -->
+            <EditText
+                android:id="@+id/editTextImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contentDescription"
+                android:inputType="textUri"
+                android:layout_marginBottom="16dp"/>
+            <!--#senior(노인) 입력부분-->
+        <LinearLayout
+            android:id="@+id/seniorInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/health"
+                android:inputType="textPostalAddress"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/requirements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/requirements"
+                android:inputType="textPostalAddress"
+                android:layout_marginBottom="16dp"/>
+
+            <CheckBox
+                android:id="@+id/hasGuardian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/has_guardian"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+
+    <!--        &lt;!&ndash;#guardian(보호자)가 있을경우&ndash;&gt;-->
+            <LinearLayout
+                android:id="@+id/guardianInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/guardianName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/guardian_name"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"/>
+
+                <EditText
+                    android:id="@+id/guardianNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/guardian_phoneNumber"
+                    android:inputType="phone"
+                    android:layout_marginBottom="16dp"/>
+
+                <EditText
+                    android:id="@+id/relationship"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/elder_relationship"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp"/>
+            </LinearLayout>
+    <!--        &lt;!&ndash; #caregiver(요양보호사) 정보 표시&ndash;&gt;-->
+        <LinearLayout
+            android:id="@+id/caregiverInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/certification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/certification"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/specialization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/specialization"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/experience"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/experienceYears"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/experience"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/availableHours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/available_hours"
+                android:inputType="text" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register" />
+        </LinearLayout>
+    </ScrollView>

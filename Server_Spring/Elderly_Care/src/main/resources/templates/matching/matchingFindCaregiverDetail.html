@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout1}">
+    
+
+<div layout:fragment="content" class="content container my-5">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3 th:text="${caregiver.user.name}">이름</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img th:src="@{/img/caregivers/{id}(id=${caregiver.user.userId})}"
+                         onerror="this.onerror=null; this.src=(this.getAttribute('data-gender') === 'male' ? '/img/defaultMale.png' : '/img/defaultFemale.png');" 
+                         data-gender="${caregiver.user.gender}"
+                         alt="Caregiver Image"
+                         class="img-fluid rounded"/>
+                </div>
+                <div class="col-md-8">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>지역 :</strong> <span th:text="${caregiver.user.country}">지역</span></li>
+                        <li class="list-group-item"><strong>경력 :</strong> <span th:text="${caregiver.caregiver.experience} + ', '">경력</span> <span th:text="${caregiver.caregiver.experienceYears} + '년'">경력년수</span></li>
+                        <li class="list-group-item"><strong>자격증 :</strong> <span th:text="${caregiver.caregiver.certification}">자격증</span></li>
+                        <li class="list-group-item"><strong>전문분야 :</strong> <span th:text="${caregiver.caregiver.specialization}">전문분야</span></li>
+                        <li class="list-group-item"><strong>이용 가능 시간 :</strong> <span th:text="${caregiver.caregiver.availableHours}">이용 가능 시간</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a th:href="@{/matching/request(caregiverId=${caregiver.caregiver.caregiverId})}" class="btn btn-primary">매칭 요청</a>
+    </div>
+
+</div>
+
+</html>
+

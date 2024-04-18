@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/adminLayout}">
+
+<div layout:fragment="content" class="content">
+	
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2" th:text="'돌봄관리('+ ${careCnt} +'/'+ ${AllCareCnt} +')'">돌봄관리</h1>
+                <form class="d-flex justify-content-between" action="/admin/careList" method="get">
+                	<select class="form-select form-select" name="field">
+                		<option value="name">이름</option>
+                		<option value="country">지역</option>
+                	</select>
+                	<input type="text" class="form-control" name="word" placeholder="글자를 입력하세요">
+                	<button class="btn btn-secondary btn-sm">검색</button>
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">아이디</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">지역</th>
+                        <th scope="col">경력</th>
+                        <th scope="col">자격증</th>
+                        <th scope="col">이용가능시간</th>
+                        <th scope="col">상세정보</th>
+                        <th scope="col">삭제</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    <tr th:each="care : ${allCare}">
+                            <td th:text="${care.caregiverId}">1</td>
+                            <td th:text="${care.user.name}">이름</td>
+                            <td th:text="${care.user.country}">지역</td>
+                            <td th:text="${care.experience}">경력</td>
+                            <td th:text="${care.certification}">자격증</td>
+                            <td th:text="${care.availableHours}">이용가능시간</td>
+                            <td>
+                            <button type="button" class="user-detail-btn" th:text="상세정보">
+                            	</button>
+                           	</td>
+                            <td>
+                            <button type="button" class="btn btn-danger delBtn" th:data-id="${care.caregiverId}">삭제</button>
+                            </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 페이징 -->
+            <div class="container mt-3">
+            <ul class="pagination justify-content-center">
+			    <li class="page-item">
+			    	<a 
+			    	th:href="@{/admin/careList(page=1)}">
+			    	<span aria-hidden="true">&laquo;&nbsp;</span>
+			    	</a>
+			    </li>
+			    <li class="page-item">
+				    <a th:href="${allCare.first} ? '#' : @{/admin/careList(page=${allCare.number})}">
+				    이전&nbsp;
+				    </a>
+			    </li>
+				    <li class="page-item">
+				    	<span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+		            	<span th:if="${page == allCare.number + 1}" th:text="${page}"></span>
+		            	<span th:unless="${page == allCare.number + 1}">
+		            		<a th:href="@{/admin/careList(page=${page})}" th:text="${page}"></a>
+		            	</span>
+		            </span>
+				    </li>
+			    <li class="page-item">
+				    <a  th:href="${allCare.last} ? '#' : @{/admin/careList(page=${allCare.number + 2})}">
+				    &nbsp;다음</a>
+			    </li>
+			    <li class="page-item">
+				    <a  th:href="@{/admin/careList(page=${allCare.totalPages})}">
+				    &nbsp;&raquo;</a>
+			    </li>
+		    </ul>
+		    </div>
+	</div>
+</div>
+</div>
+<script>
+	/* 요양보호사 구인 삭제 */
+	$(document).on("click", ".delBtn", function(){
+		const userId = $(this).data("id");
+		alert(userId +"번을 삭제하시겠습니까?");
+		
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		$.ajax({
+			type: "DELETE",
+			url: "/admin/delCare/"+ userId,
+			beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
+		})
+		.done(function(resp){
+			alert(resp +"번 삭제 성공");
+			location.href = "/admin/careList";
+		})
+		.fail(function(e){
+			alert("실패");
+		})
+	})
+
+
+
+
+</script>
+
+
+
+</div>

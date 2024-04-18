@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/header_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="625dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="10dp"
+            android:text="@string/usercheck"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="414dp"
+            android:layout_marginTop="80dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <!-- Spacing view to separate buttons -->
+
+            <Button
+                android:id="@+id/btnSenior"
+                android:layout_width="0dp"
+                android:layout_height="360dp"
+                android:layout_weight="1"
+                android:text="노인/보호자"
+                android:textSize="27dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/btnCaregiver"
+                android:layout_width="0dp"
+                android:layout_height="360dp"
+                android:layout_weight="1"
+                android:text="요양보호사"
+                android:textSize="27dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/footer_layout"/>
+</LinearLayout>

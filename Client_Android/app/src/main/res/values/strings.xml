@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">ElderlyCare</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_button_desc">메뉴 열기 버튼</string>
+    <string name="period_text">%1$s ~ %2$s</string>
+    <string name="time_text">%1$s ~ %2$s</string>
+    <string name="separator">:</string>
+    <string name="name">이름</string>
+    <string name="region">지역</string>
+    <string name="experience">경력</string>
+    <string name="certification">자격증</string>
+    <string name="specialization">전문 분야</string>
+    <string name="available_hours">이용 가능 시간</string>
+    <string name="health">건강 상태</string>
+    <string name="requirements">요청 사항</string>
+    <string name="has_guardian">보호자 유무</string>
+    <string name="guardian_name">보호자 이름</string>
+    <string name="guardian_relationship">보호자 관계</string>
+    <string name="elder_name">노인 이름</string>
+    <string name="elder_relationship">노인과의 관계</string>
+    <string name="elder_gender">노인 성별</string>
+    <string name="start_date">시작 날짜</string>
+    <string name="end_date">종료 날짜</string>
+    <string name="start_time">시작 시간</string>
+    <string name="end_time">종료 시간</string>
+    <string name="details_view">상세보기</string>
+    <string name="accept_matching">매칭 수락</string>
+    <string name="request_matching">매칭 신청</string>
+    <string name="contentDescription">이미지</string>
+    <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="request_matching_title">매칭 신청 페이지</string>
+    <string name="caregiver_info_title">요양보호사 정보</string>
+    <string name="user_role_title">사용자 역할 선택</string>
+    <string name="user_role_prompt">역할을 선택하세요</string>
+    <string name="elderly_info_title">정보 입력</string>
+    <string name="matching_country_hint">지역 입력</string>
+    <string name="health_hint">건강 상태 입력</string>
+    <string name="requirements_hint">요청 사항 입력</string>
+    <string name="has_guardian_prompt">보호자 유무를 선택하세요</string>
+    <string name="guardian_name_hint">보호자 이름 입력</string>
+    <string name="guardian_relationship_hint">보호자와의 관계 입력</string>
+    <string name="guardian_relationship_to_elderly_hint">노인과의 관계 입력</string>
+    <string name="elderly_name_hint">노인 이름 입력</string>
+    <string name="elderly_gender_prompt">노인 성별을 입력하세요</string>
+    <string name="phoneNumber">전화번호</string>
+    <string name="guardian_phoneNumber">보호자 전화번호</string>
+    <string name="address">주소</string>
+    <string name="passwordconfirm">비밀번호 확인</string>
+    <string name="usercheck">원하는 회원가입 유형을 선택해주세요</string>
+    <string name="register">회원가입</string>
+
+
+    <string name="terms_of_service_long_text">여러분 환영합니다 , THE 홈케어 이용해주셔서 감사합니다 .
+    THE 홈케어 는 믿음 과 신뢰 할수있는 서비스 가 되기 위해 노력하겠습니다 . THE 홈케어 를 통해 요양서비스 이용과
+    ,제공 을 통해 세상을 좀더 편리하게 만들어 가겠습니다 THE 홈케어 서비스 이용에 동의 하신다면 , 체크 해주시기
+    바랍니다 .
+    </string>
+    <string name="privacy_policy_long_text">개인정보보호법에 따라 네이버에 회원가입 신청하시는 분께 수집하는
+    개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에
+    관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
+    </string>
+</resources>

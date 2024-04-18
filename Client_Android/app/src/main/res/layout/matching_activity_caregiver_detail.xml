@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:contentDescription="@string/contentDescription"
+        android:id="@+id/caregiver_image"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/defaultmale"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/name_textview"
+        style="@style/TitleTextStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:text="@string/region"
+            style="@style/LabelTextStyle" />
+
+        <TextView
+            android:text="@string/separator"
+            style="@style/SeparatorTextStyle" />
+
+        <TextView
+            android:id="@+id/country_textview"
+            style="@style/ContentTextStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:text="@string/experience"
+            style="@style/LabelTextStyle" />
+
+        <TextView
+            android:text="@string/separator"
+            style="@style/SeparatorTextStyle" />
+
+        <TextView
+            android:id="@+id/experience_textview"
+            style="@style/ContentTextStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:text="@string/certification"
+            style="@style/LabelTextStyle" />
+
+        <TextView
+            android:text="@string/separator"
+            style="@style/SeparatorTextStyle" />
+
+        <TextView
+            android:id="@+id/certification_textview"
+            style="@style/ContentTextStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:text="@string/specialization"
+            style="@style/LabelTextStyle" />
+
+        <TextView
+            android:text="@string/separator"
+            style="@style/SeparatorTextStyle" />
+
+        <TextView
+            android:id="@+id/specialization_textview"
+            style="@style/ContentTextStyle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:text="@string/available_hours"
+            style="@style/LabelTextStyle" />
+
+        <TextView
+            android:text="@string/separator"
+            style="@style/SeparatorTextStyle" />
+
+        <TextView
+            android:id="@+id/available_hours_textview"
+            style="@style/ContentTextStyle" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="@string/request_matching"
+        android:id="@+id/request_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ElderlyCareApplication<Elderly_Care>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "kr.spring.care.ElderlyCareApplication",
+            "projectName": "Elderly_Care",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

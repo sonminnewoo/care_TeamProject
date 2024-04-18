@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}"
+	>
+    
+	<div layout:fragment="content" class="content">
+	    <div class="profile-info" sec:authorize="hasRole('CAREGIVER')">
+	        <h3>내 프로필</h3>
+	        <a th:href="@{/caregiver/profile}" class="btn btn-primary">프로필 편집</a>
+	    </div>
+	    <div class="job-status" sec:authorize="hasRole('CAREGIVER')"><br></div>
+	    <div class="job-status" sec:authorize="hasRole('CAREGIVER')">
+	        <h3>구직 상태 변경</h3>
+	        <form action="/caregiver/updateStatus" method="post">
+	            <select name="newStatus">
+	                <option value="AVAILABLE">구직 중</option>
+	                <option value="UNAVAILABLE">구직 중단</option>
+	            </select>
+	            <button type="submit" class="btn btn-primary">상태 업데이트</button>
+	        </form>
+	    </div>
+	    <div class="job-status" sec:authorize="hasRole('CAREGIVER')"><br></div>
+	
+	    <h2>요양보호사 찾기</h2>
+        <div class="d-md-flex justify-content-md-end">
+            <form class="d-md-flex gap-2" action="/matching/findcaregiver" method="get">
+            	<select class="form-select" name="field">
+            		<option value="name">이름</option>
+            		<option value="country">지역</option>
+            	</select>
+            	<input type="text" class="form-control" name="word" placeholder="글자를 입력하세요">
+            	<button type="submit" class="btn btn-secondary btn-sm col-2">검색</button>
+            </form>
+        </div>
+	
+	    <div th:if="${caregiversPage.hasContent()}">
+	        <table class="table">
+	            <thead>
+	                <tr>
+	                    <th>이름</th>
+	                    <th>지역</th>
+	                    <th>경력</th>
+	                    <th>자격증</th>
+	                    <th>이용 가능 시간</th>
+	                    <th>상세정보</th>
+	                    <th>요청</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr th:each="caregiver : ${caregiversPage}">
+	                    <td data-type="name" th:text="${caregiver.user.name}">이름</td>
+	                    <td th:text="${caregiver.user.country}">지역</td>
+	                    <td th:text="${caregiver.caregiver.experience}">경력</td>
+	                    <td th:text="${caregiver.caregiver.certification}">자격증</td>
+	                    <td th:text="${caregiver.caregiver.availableHours}">이용 가능 시간</td>
+						<td><a th:href="@{/matching/findcaregiver/detail(caregiverId=${caregiver.caregiver.caregiverId})}" class="btn btn-info">상세 보기</a></td>
+	                    <td><a th:href="@{/matching/request(caregiverId=${caregiver.caregiver.caregiverId})}" class="btn btn-primary">요청</a></td>
+	                </tr>
+	            </tbody>
+	        </table>
+
+            <nav>
+                <ul class="pagination d-flex justify-content-center">
+                    <li class="page-item" th:classappend="${caregiversPage.first} ? 'disabled'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${caregiversPage.number - 1}, field=${field}, word=${word})}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:each="pageNum : ${#numbers.sequence(0, caregiversPage.totalPages - 1)}" class="page-item" th:classappend="${pageNum == caregiversPage.number} ? 'active'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${pageNum}, field=${field}, word=${word})}" th:text="${pageNum + 1}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${caregiversPage.last} ? 'disabled'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${caregiversPage.number + 1}, field=${field}, word=${word})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+	    </div>
+	    <div th:if="${!caregiversPage.hasContent()}">
+	        <table class="table">
+	            <thead>
+	                <tr>
+	                    <th>이름</th>
+	                    <th>경력</th>
+	                    <th>자격증</th>
+	                    <th>사용 가능한 시간</th>
+	                    <th>요청</th>
+	                </tr>
+	            </thead>
+	        </table>
+	        <p>사용 가능한 요양보호사가 없습니다.</p>
+
+            <nav>
+                <ul class="pagination d-flex justify-content-center">
+                    <li class="page-item" th:classappend="${caregiversPage.first} ? 'disabled'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${caregiversPage.number - 1})}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:each="pageNum : ${#numbers.sequence(0, caregiversPage.totalPages == 0 ? 0 : caregiversPage.totalPages - 1)}" class="page-item" th:classappend="${pageNum == caregiversPage.number} ? 'active'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${pageNum})}" th:text="${pageNum + 1}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${caregiversPage.last} ? 'disabled'">
+                        <a class="page-link" th:href="@{/matching/findcaregiver(page=${caregiversPage.number + 1})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+	    </div>
+	    <script>
+	    document.addEventListener('DOMContentLoaded', function() {
+	        maskNames();
+	    });
+        // 페이지가 로드되면 실행될 함수
+        function maskNames() {
+            // 모든 이름을 포함하는 요소를 찾음
+            var nameElements = document.querySelectorAll('td[data-type="name"]');
+            nameElements.forEach(function(elem) {
+                var name = elem.textContent.trim();
+                if (name.length > 0) {
+                    elem.textContent = name.charAt(0) + '*'.repeat(name.length - 1);
+                }
+            });
+        }
+        
+        maskNames();
+    </script>
+	</div>
+
+</html>

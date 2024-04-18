@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/hc_info"
+        android:title="THE 홈케어 소개" />
+    <item
+        android:id="@+id/nav_board"
+        android:title="자유게시판" />
+    <item
+        android:id="@+id/nav_find_caregivers"
+        android:title="요양보호사 구인" />
+    <item
+        android:id="@+id/nav_find_jobs"
+        android:title="요양보호사 구직" />
+    <!-- 필요한 만큼 메뉴 아이템을 추가합니다. -->
+    <item
+        android:id="@+id/nav_myPage"
+        android:title="마이 페이지" />
+    <item
+        android:id="@+id/nav_user_login"
+        android:title="로그인" />
+    <item
+        android:id="@+id/nav_user_register"
+        android:title="회원가입" />
+</menu>

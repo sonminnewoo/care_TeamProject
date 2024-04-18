@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<body>
+
+	<div layout:fragment="content" class="content">
+	<form action="/board/update" method="get">
+		<div class="container mt-3">
+			<h3 th:text="${board.user.name} + '의 수정하기'"></h3>
+			<div class="mb-3 mt-3">
+				<label for="num">No:</label> <input type="text" class="form-control"
+					id="num" th:value="${board.num}" readonly="readonly">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="title">제목:</label> <input type="text"
+					class="form-control" id="title" th:value="${board.title}">
+			</div>
+			<div class="mb-3">
+				<label for="writer">작성자:</label> <input type="text"
+					class="form-control" id="writer" th:value="${board.user.name}"
+					name="writer" readonly="readonly">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="content">내용:</label>
+				<textarea class="form-control" rows="5" id="content" name="content"
+					th:text="${board.content}"></textarea>
+			</div>
+			<div class="">
+				<button type="submit" class="btn btn-secondary btn-sm"
+					id="btnModify">수정</button>
+			</div>
+		</div>
+		</form>
+		
+		
+
+
+  		<script>
+			$("#btnModify").click(function() {
+				var data = {
+					"num" : $("#num").val(),
+					"title" : $("#title").val(),
+					"content" : $("#content").val()
+				}
+					$.ajax({
+					type : "PUT",
+					url : "/board/update",
+					contentType : "application/json;charset=utf-8",
+					data : JSON.stringify(data),
+					success : function(resp) {
+						alert(resp + "번 글 수정 성공");
+						location.href = "/board/boardlist";
+					},
+					error : function(e) {
+						alert("수정실패 : " + e);
+					}
+				}); //ajax
+				}
+			); //btnModify
+		</script>
+	</div>
+</body>
+</html>

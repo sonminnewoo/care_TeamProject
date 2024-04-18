@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/request_matching_title"
+            style="@style/TitleTextStyle"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:id="@+id/caregiverInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/caregiver_info_title"
+                style="@style/TitleTextStyle" />
+
+            <ImageView
+                android:contentDescription="@string/contentDescription"
+                android:id="@+id/caregiverImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/defaultmale"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/name"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <TextView
+                    android:id="@+id/caregiverName"
+                    style="@style/ContentTextStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/region"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <TextView
+                    android:id="@+id/caregiverCountry"
+                    style="@style/ContentTextStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/experience"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <TextView
+                    android:id="@+id/caregiverExperience"
+                    style="@style/ContentTextStyle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/certification"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <TextView
+                    android:id="@+id/caregiverCertification"
+                    style="@style/ContentTextStyle" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_role_title"
+                style="@style/TitleTextStyle" />
+
+            <Spinner
+                android:id="@+id/userRoleSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/user_roles"
+                android:prompt="@string/user_role_prompt" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/elderlyInfoFields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <!-- 노인 본인 정보 입력 창 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/elderly_info_title"
+                style="@style/TitleTextStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/region"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/matchingCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/matching_country_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/health"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/health"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/health_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/requirements"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/requirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/requirements_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/has_guardian"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <Spinner
+                    android:id="@+id/hasGuardianSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/has_guardian_options"
+                    android:prompt="@string/has_guardian_prompt" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 노인이 입력하는 보호자 정보 입력 창 -->
+        <LinearLayout
+            android:id="@+id/guardianInfoFields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/guardian_name"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/guardianName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/guardian_name_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/guardian_relationship"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/relationshipWithGuardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/guardian_relationship_hint"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 보호자가 입력하는 노인 정보 입력 창 -->
+        <LinearLayout
+            android:id="@+id/elderlyInfoFieldsForGuardian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            tools:ignore="ExtraText">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/elderly_info_title"
+                style="@style/TitleTextStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/elder_relationship"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/relationshipWithElder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/guardian_relationship_to_elderly_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/elder_name"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/elderlyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/elderly_name_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:text="@string/elder_gender"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <Spinner
+                    android:id="@+id/elderlyGenderSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/gender_options"
+                    android:prompt="@string/elderly_gender_prompt"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/region"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/matchingCountryForGuardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/matching_country_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/health"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/healthForGuardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/health_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/requirements"
+                    style="@style/LabelTextStyle" />
+
+                <TextView
+                    android:text="@string/separator"
+                    style="@style/SeparatorTextStyle" />
+
+                <EditText
+                    android:id="@+id/requirementsForGuardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/requirements_hint"
+                    android:inputType="text"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/startDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/start_date"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/endDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/end_date"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/start_time"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/end_time"
+                android:padding="12dp"
+                android:background="@drawable/edit_text_background"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/requestButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/request_matching"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>

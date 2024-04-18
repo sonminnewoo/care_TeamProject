@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="user_roles">
+        <item>선택</item>
+        <item>노인 본인</item>
+        <item>보호자</item>
+    </string-array>
+    <string-array name="has_guardian_options">
+        <item>선택</item>
+        <item>있음</item>
+        <item>없음</item>
+    </string-array>
+    <string-array name="gender_options">
+        <item>선택</item>
+        <item>남성</item>
+        <item>여성</item>
+    </string-array>
+</resources>

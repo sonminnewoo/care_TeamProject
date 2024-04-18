@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div class="sidebar" th:fragment="sidebar">
+	<!-- Sidebar -->
+	<nav class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id = "accordionSidebar">
+		<!-- 공지사항 -->
+		<div class="noticeboard-section">
+			<h2>공지사항</h2>
+			<ul>
+				<li><a href="#noticeboard1">공지사항 1</a></li>
+				<li><a href="#noticeboard2">공지사항 2</a></li>
+			</ul>
+		</div>
+		<!-- 자유게시판 -->
+		<div class="freeboard-section">
+			<h2>자유게시판</h2>
+			<ul>
+				<li><a href="#freeboard1">게시글 1</a></li>
+				<li><a href="#freeboard2">게시글 2</a></li>
+			</ul>
+		</div>
+	</nav>
+</div>
+</html>

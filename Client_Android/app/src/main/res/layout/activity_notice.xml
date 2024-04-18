@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <include layout="@layout/header_layout" />
+
+    <LinearLayout
+        android:layout_below="@+id/header_layout"
+        android:id="@+id/noticeMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 제목을 표시할 TextView -->
+        <TextView
+            android:id="@+id/recyclerTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="제목"
+            android:layout_weight="2"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- 작성자를 표시할 TextView -->
+        <TextView
+            android:id="@+id/recyclerWriter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="작성자"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="RtlCompat" />
+
+        <!-- 등록 날짜를 표시할 TextView -->
+        <TextView
+            android:id="@+id/recyclerRegdate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="등록일"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="RtlCompat"/>
+
+    </LinearLayout>
+
+    <!-- RecyclerView로 공지사항 목록 표시 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/noticeMenu"
+        android:layout_above="@+id/footer_layout"
+        android:id="@+id/listNotice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
+    <include layout="@layout/footer_layout" />
+</RelativeLayout>

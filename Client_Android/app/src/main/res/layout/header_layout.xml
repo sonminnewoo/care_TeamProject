@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/header"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <ImageView
+            android:contentDescription="@string/contentDescription"
+            android:id="@+id/logo"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:scaleX="1.5"
+            android:scaleY="1.2"
+            android:src="@drawable/logo3"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:scaleX="0.8"
+            android:background="@color/header"
+            android:contentDescription="@string/menu_button_desc"
+            app:srcCompat="@drawable/baseline_dehaze_24" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:text="@string/login" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:text="@string/logout" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- 네비게이션 뷰 레이아웃 -->
+    <FrameLayout
+        android:id="@+id/nav_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:visibility="gone">
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/navigation_menu" />
+    </FrameLayout>
+
+</RelativeLayout>

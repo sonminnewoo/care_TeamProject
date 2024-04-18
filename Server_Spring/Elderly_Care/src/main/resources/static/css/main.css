@@ -1,0 +1,237 @@
+/*슬라이드 쇼 완성 및 케어 섹션추가 + 중복되는 css 정리*/
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden /*수평 스크롤 막기*/
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	background-color: #333;
+	z-index: 1000;
+}
+
+.header .custom-btn {
+	/* 버튼의 테두리 색상 설정 */
+	background-color: #d591a5;
+	border-color: #a67488; /* 여기에 원하는 테두리 색상을 지정하세요 */
+}
+
+.header .nav-item .nav-link {
+	font-family: "Jua", sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+	font-style: normal;
+}
+
+body {
+	min-height: 100%;
+	margin: 0;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 15px 0;
+	text-align: center;
+	background-color: #f8f9fa;
+	z-index: 1000;
+}
+
+/* Media Queries */
+@media ( max-width : 1600px) {
+	.care-section {
+		width: 100%; /* 최대 너비를 100%로 설정하여 화면 크기에 맞게 조절합니다. */
+		padding: 6rem 20px; /* 양쪽 여백을 조정합니다. */
+	}
+}
+
+@media ( max-width : 1200px) {
+	.portfolio-item {
+		width: calc(33.33% - 20px); /* 화면 폭이 좁아질 때 포트폴리오 항목의 크기를 조정합니다. */
+	}
+}
+
+@media ( max-width : 990px) {
+	.content {
+		margin-left: 0; /* sidebar가 사라지면 content의 좌측 여백을 없앱니다. */
+		margin-top: 115px;
+		width: 100%; /* sidebar가 없으므로 content가 전체 너비를 차지하도록 설정합니다. */
+	}
+	.carousel-indicators button.active {
+		background-color: #ab2222; /* 원하는 활성화 색상 지정 */
+	}
+	
+	/*공지사항 메인보드*/
+	.main-board {
+		width: 80%; /* 보드의 너비 설정 */
+		margin: 0 auto; /* 가운데 정렬 */
+		margin-top: 60px;
+		margin-bottom: 60px;
+		background-color: #f2f2f2; /* 배경색 설정 */
+		border: 1px solid #ddd; /* 테두리 설정 */
+		padding: 20px; /* 내부 여백 설정 */
+	}
+	
+	.main-board a {
+		text-decoration: none;
+	}
+	.board-list {
+		padding: 0; /* 내부 여백 제거 */
+	}
+	.board-item {
+		margin-bottom: 10px; /* 각 항목 사이 여백 */
+		list-style-type: disc; /* 원래의 점을 목록처럼 표시 */
+		margin-left: 20px; /* 왼쪽 여백 설정 */
+	}
+	.board-link {
+		text-decoration: none; /* 링크 밑줄 제거 */
+		color: #333; /* 링크 색상 */
+	}
+	.board-link:hover {
+		color: #555; /* 호버 시 링크 색상 변경 */
+	}
+	
+	/* Portfolio section */
+    #portfolio {
+        background-color: #db8ea2;
+    }
+    .care-section:nth-of-type(2) .text-center .section-heading,
+    .care-section:nth-of-type(2) .text-center .section-subheading {
+        color: #fff;
+        font-family: Lilita One, sans-serif;
+        font-weight: 500;
+    }
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .portfolio-item {
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100%;
+    }
+    .portfolio-caption {
+        margin-top: 15px;
+    }
+	
+}
+
+@media ( min-width : 991px) {
+	/*.content {
+		/*margin-left: 150px;*/
+	/* 화면 너비가 991px 이상일 때 sidebar의 너비만큼 좌측 마진을 설정합니다. */
+	.content {
+		margin-top: 115px;
+		margin-right: 20px;
+		position: relative;
+		z-index: 950;
+		overflow-y: auto;
+		width: 100%;
+		height: calc(100vh - 160px);
+	}
+
+	/*slideshow;;carousel*/
+	.carousel-indicators button.active { /* 활성화된 indicator 색상 변경 */
+		background-color: #ab2222; /* 원하는 활성화 색상 지정 */
+	}
+	.carousel-item img {
+		height: 600px; /* 원하는 높이로 조정하세요 */
+	}
+	.carousel-control-prev-icon {
+		background-color: #f7aaac; /* 원하는 색상으로 변경하세요 */
+	}
+
+	/* 다음 버튼 아이콘의 색상을 지정합니다. */
+	.carousel-control-next-icon {
+		background-color: #f7aaac; /* 원하는 색상으로 변경하세요 */
+	}
+
+	/*공지사항 메인보드*/
+	.main-board {
+		width: 80%; /* 보드의 너비 설정 */
+		margin: 0 auto; /* 가운데 정렬 */
+		margin-top: 60px;
+		background-color: #f2f2f2; /* 배경색 설정 */
+		border: 1px solid #ddd; /* 테두리 설정 */
+		padding: 20px; /* 내부 여백 설정 */
+	}
+	
+	.main-board a {
+		text-decoration: none;
+	}
+	.board-list {
+		padding: 0; /* 내부 여백 제거 */
+	}
+	.board-item {
+		margin-bottom: 10px; /* 각 항목 사이 여백 */
+		list-style-type: disc; /* 원래의 점을 목록처럼 표시 */
+		margin-left: 20px; /* 왼쪽 여백 설정 */
+	}
+	.board-link {
+		text-decoration: none; /* 링크 밑줄 제거 */
+		color: #333; /* 링크 색상 */
+	}
+	.board-link:hover {
+		color: #555; /* 호버 시 링크 색상 변경 */
+	}
+	
+	
+	/* Section -- 슬라이드쇼 아래의 services와 portfolio*/
+	.care-section {
+		padding: 6rem 0;
+		max-width: 1600px;
+		margin: auto; /* 가운데 정렬 */
+	}
+
+	/*Services*/
+	#services {
+		background-color: #fff;
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
+	.col-md-4 {
+		color: #1d9cce;
+		font-size: 20px;
+		font-family: LilitaOne, sans-serif;
+	}
+
+	/*포트폴리오*/
+	#portfolio {
+		background-color: #db8ea2;
+	}
+	.care-section:nth-of-type(2) .text-center .section-heading {
+		color: #fff; /* 원하는 색상 코드로 변경 */
+		font-family: Lilita One, sans-serif; /* 원하는 폰트로 변경 */
+		font-weight: 500;
+		/* 추가적인 스타일링을 여기에 추가할 수 있습니다. */
+	}
+	.care-section:nth-of-type(2) .text-center .section-subheading {
+		color: #fff; /* 원하는 색상 코드로 변경 */
+		font-family: 'Arial', sans-serif; /* 원하는 폰트로 변경 */
+		/* 추가적인 스타일링을 여기에 추가할 수 있습니다. */
+	}
+	.row {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.portfolio-item {
+		margin-bottom: 30px; /* 각 포트폴리오 아이템 간의 간격 조절 */
+		text-align: center;
+	}
+	.portfolio-caption {
+		margin-top: 15px; /* 필요한 경우 상단 여백 조절 */
+	}
+}
+/* 이미지 슬라이드에 대한 추가 스타일링은 필요한 경우 여기에 추가하세요 */
+/*좌측 미니 게시판 설정시에 마진이 너무 커서 조정했습니다*/

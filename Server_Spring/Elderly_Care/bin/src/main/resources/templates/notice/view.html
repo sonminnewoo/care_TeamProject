@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content" class="content">
+	<body>
+		<div class="container">
+			<h3 th:text="${notice.title}"></h3>
+
+			<div class="mb-3">
+				<label for="num">No:</label> <input type="text" class="form-control"
+					id="num" th:value="${notice.num}" th:data-notice-num="${notice.num}" readonly="readonly">
+			</div>
+
+			<div class="mb-3 mt-3">
+				<label for="title">제목:</label> <input type="text"
+					class="form-control" id="title" th:value="${notice.title}"
+					readonly="readonly">
+			</div>
+
+			<div class="mb-3">
+				<label for="writer">작성자:</label> <input type="text"
+					class="form-control" id="writer" th:value="${notice.writer}">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="content">내용:</label>
+				<textarea class="form-control" rows="5" id="content" name="content"
+					readonly="readonly" th:text="${notice.content}"></textarea>
+			</div>
+			<!-- <div sec:authorize="hasRole('ADMIN')"> -->
+			<!-- 게시글 수정, 삭제, 뒤로가기 버튼 -->
+            <div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                        id="btnUpdate" onclick="updateNotice()">수정</button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnDelete"
+                        onclick="deleteNotice()">삭제</button>
+                    <button type="button" class="btn btn-success btn-sm" id="btnDelete"
+                        onclick="goBack()">뒤로가기</button>
+                </div>
+            </div>
+		</div>
+
+		<script>
+			function goBack() {
+				location.href = "/notice/list"
+			}
+		</script>
+
+		<!-- 수정폼과 스크립트 -->
+		<th:block layout:fragment="script">
+			<script type="text/javascript">
+				// 게시글 수정
+				function updateNotice() {
+					if (!confirm('수정하시겠습니까?')) {
+						return false;
+					}
+					var noticeNum = document.getElementById("num").getAttribute("data-notice-num");
+					location.href = "/notice/noticeupdate/" + noticeNum;
+				}
+
+				// 게시글 삭제
+				function deleteNotice() {
+					var noticeNum = document.getElementById("num").getAttribute("data-notice-num");
+					if (!confirm(noticeNum + '번 게시글을 삭제하시겠습니까?')) {
+						return false;
+					}
+					var csrfToken = $("meta[name='_csrf']").attr("content");
+			        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+					$.ajax({
+						type: "DELETE",
+						url: "/notice/delete/"+ noticeNum,
+						contentType: 'application/json;',
+						beforeSend: function(xhr) {
+				                xhr.setRequestHeader(csrfHeader, csrfToken);
+					}
+					})
+					.done(function(resp){
+						alert(resp +"번 삭제 완료!")
+						location.href = "/notice/list"
+					})
+					.fail(function(e){
+						alert("삭제실패"+e)
+					})
+					
+					
+				}
+				// 뒤로 가기
+				function goBack() {
+					location.href = "/notice/list";
+				}
+			</script>
+		</th:block>
+	</body>
+</div>
+</html>

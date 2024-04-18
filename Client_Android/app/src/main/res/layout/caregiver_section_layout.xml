@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/caregiver_section_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/footer_layout"
+    android:orientation="vertical">
+
+    <!-- 요양보호사 섹션 -->
+    <LinearLayout
+        android:id="@+id/caregiver_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFDDD"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/caregiver_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="요양보호사"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- 서비스 1 -->
+        <TextView
+            android:id="@+id/caregiver_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="32dp"
+            android:text="따뜻한 마음으로 어르신을 돌보는 우리는 모두의 돌봄전문가."
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/service_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/service_1_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/service_1_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="신체활동 지원"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_1_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="- 식사하기, 체위변경 및 이동하기, 화장실이용, 개인위생활동 및 몸단장, 신체기능 증진활동 등의 도움을 통해 안전하고 건강하게 돌봐드립니다."
+                android:textColor="@color/dark_gray"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <!-- 서비스 2 -->
+        <LinearLayout
+            android:id="@+id/service_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/service_2_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/service_2_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="인지활동 지원"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_2_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="- 회상 훈련, 기억력 향상 활동, 남아있는 기능의 유지‧향상을 위한 인지자극활동 등을 통해 건망이 아닌 건강을 챙겨드립니다."
+                android:textColor="@color/dark_gray"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <!-- 서비스 3 -->
+        <LinearLayout
+            android:id="@+id/service_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/service_3_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/service_3_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="일상생활 및 정서 지원"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/service_3_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="- 어르신의 방 안 청소 및 주변정돈, 식사준비, 말벗, 의사소통 도움, 외출 동행 등을 통해 외롭지 않고 즐거운 일상을 보내게 됩니다."
+                android:textColor="@color/dark_gray"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 포트폴리오 섹션 -->
+    <LinearLayout
+        android:id="@+id/portfolio_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/portfolio_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="32dp"
+            android:paddingBottom="16dp"
+            android:text="50000명이 THE 홈케어를 찾는 이유"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/portfolio_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="32dp"
+            android:text="이런 분들께 필요한 것들을 알고 있기 때문이죠!"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="horizontal">
+
+            <!-- 포트폴리오 아이템 1 -->
+            <ImageView
+                android:id="@+id/portfolio_item_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:scaleType="centerInside"
+                android:scaleX="1.8"
+                android:scaleY="1.7"
+                android:src="@drawable/need1" />
+
+            <!-- 포트폴리오 아이템 2 -->
+            <ImageView
+                android:id="@+id/portfolio_item_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="50dp"
+                android:scaleType="fitXY"
+                android:scaleX="1.2"
+                android:scaleY="0.5"
+                android:src="@drawable/needy" />
+
+            <!-- 포트폴리오 아이템 3 -->
+            <ImageView
+                android:id="@+id/portfolio_item_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1.7"
+                android:scaleY="1.8"
+                android:src="@drawable/need2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="horizontal">
+
+            <!-- 포트폴리오 아이템 4 -->
+            <ImageView
+                android:id="@+id/portfolio_item_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1.7"
+                android:scaleY="1.8"
+                android:src="@drawable/need3" />
+
+            <!-- 포트폴리오 아이템 5 -->
+            <ImageView
+                android:id="@+id/portfolio_item_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1.7"
+                android:scaleY="1.8"
+                android:src="@drawable/need4" />
+
+            <!-- 포트폴리오 아이템 6 -->
+            <ImageView
+                android:id="@+id/portfolio_item_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1.7"
+                android:scaleY="1.8"
+                android:src="@drawable/need5" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

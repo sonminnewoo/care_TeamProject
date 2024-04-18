@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<body>
+
+<div class="container mt-3">
+    <h3 th:text="${notice.user.username} + '의 수정하기'"></h3>
+    <div class="mb-3 mt-3">
+        <label for="num">No:</label> <input type="text" class="form-control"
+                                             id="num" th:value="${notice.num}" readonly="readonly">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="title">제목:</label> <input type="text"
+                                                  class="form-control" id="title" th:value="${notice.title}">
+    </div>
+    <div class="mb-3">
+        <label for="writer">작성자:</label> <input type="text"
+                                                    class="form-control" id="writer" th:value="${notice.user.username}"
+                                                    name="writer" readonly="readonly">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="content">내용:</label>
+        <textarea class="form-control" rows="5" id="content" name="content"
+                  th:text="${notice.content}"></textarea>
+    </div>
+    <div class="">
+        <button type="button" class="btn btn-secondary btn-sm" id="btnModify">수정</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-pzjw8f+2aG3ZsHAk9Vl5z9zJR2vF6bN6zV9x6kQk/iI+xXMI8M5M0abwEjh4uYzP"
+        crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $("#btnModify").click(function(){
+        var data = {
+            "num" : $("#num").val(),
+            "title" : $("#title").val(),
+            "content" : $("#content").val()
+        };
+        $.ajax({
+            type : "PUT",
+            url  : "/notice/update",
+            contentType : "application/json;charset=utf-8",
+            data:   JSON.stringify(data),
+            success:function(resp){
+                alert(resp + "번 글 수정 성공");
+                location.href="/notice/list";
+            },
+            error : function(e){
+                alert("수정실패 : " + e);
+            }
+        });  //ajax
+    });  //btnModify
+    /*]]>*/
+</script>
+
+</body>
+</html>

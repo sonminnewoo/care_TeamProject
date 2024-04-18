@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 헤더 레이아웃 -->
+    <include layout="@layout/header_layout" />
+
+
+    <!-- 콘텐츠 레이아웃 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer_layout"
+        android:layout_below="@+id/header_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".MainActivity">
+
+                <!-- 이미지 슬라이드 뷰 -->
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </RelativeLayout>
+
+            <!-- 공지사항(간단) -->
+            <TextView
+                android:id="@+id/noticeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:text="공지사항"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:onClick="openNoticeActivity" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/smallNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <!-- 요양보호사 섹션 -->
+            <include layout="@layout/caregiver_section_layout" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 푸터 레이아웃 -->
+    <include
+        layout="@layout/footer_layout"
+        />
+
+</RelativeLayout>

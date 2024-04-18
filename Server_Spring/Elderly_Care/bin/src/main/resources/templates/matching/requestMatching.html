@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}"
+	>
+	
+	<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+  <style>
+		.caregiver-image img {
+		    width: 200px; /* 이미지의 너비 */
+		    height: 200px; /* 이미지의 높이 */
+		    object-fit: cover; /* 이미지 비율 유지 */
+		}
+		
+        .custom-card-body {
+            width: 50%; /* card-body의 너비를 50%로 설정 */
+            margin: 0 auto; /* 중앙 정렬 */
+        }
+		.centered-title {
+		    text-align: center;
+		}
+        textarea {
+            width: 100%;
+            height: 100px; /* 초기 높이 설정 */
+            overflow-y: auto; /* 세로 스크롤 바 활성화 */
+        }
+  </style>
+  <script>
+    function submitRequestForm() {
+        document.getElementById('matchingRequestForm').submit();
+    }
+  </script>
+</th:block>
+	
+	<div layout:fragment="content" class="content">
+	
+	    <h2 class="centered-title mb-4">매칭 요청</h2>
+
+	    <!-- 요양보호사 정보가 있을 경우 표시 -->
+	    <div th:if="${caregiver != null}" class="card custom-card-body mb-4">
+	        <div class="card-body">
+	            <h3 class="card-title">요양보호사 정보</h3>
+            <div class="caregiver-image">
+			    <img src="@{/img/caregivers/{id}(id=${caregiver.user.userId})}" 
+			         onerror="this.onerror=null; this.src=(this.getAttribute('data-gender') === 'male' ? '/img/defaultMale.png' : '/img/defaultFemale.png');" 
+			         data-gender="${caregiver.user.gender}"
+			         alt="Caregiver Image" />
+            </div>
+	            <p><strong>이름:</strong> <span th:text="${caregiver.user.name}"></span></p>
+	            <p><strong>지역:</strong> <span th:text="${caregiver.user.country}"></span></p>
+	            <p><strong>경력:</strong> <span th:text="${caregiver.caregiver.experience}"></span></p>
+	            <p><strong>자격증:</strong> <span th:text="${caregiver.caregiver.certification}"></span></p>
+	        </div>
+	    </div>
+	
+	    <!-- 매칭 요청 폼 -->
+	    <form id="matchingRequestForm" th:action="@{/matching/request}" method="post" class="card custom-card-body mb-4">
+			<div class="card-body">
+			    <h3 class="card-title">사용자 역할 선택</h3>
+			    <div class="col-md-4 form-group mb-3">
+			        <label for="userRole">당신은:</label>
+			        <select class="form-select" id="userRole" name="userRole">
+			            <option value="" disabled selected></option>
+			            <option value="elderly">노인 본인</option>
+			            <option value="guardian">보호자</option>
+			        </select>
+			    </div>
+			</div>
+			<!-- Senior 정보 입력 폼 -->
+			<div class="card-body" id="elderlyInfo" style="display: none;">
+			    <h3 class="card-title">정보 입력</h3>
+		        <div id="guardianFields" style="display:none;">
+		            <div class="col-md-4 form-group mb-3">
+		                <label for="relationship">노인과의 관계:</label>
+		                <input type="text" class="form-control" id="relationship" name="relationship" placeholder="관계 입력">
+		            </div>
+		            <div class="col-md-4 form-group mb-3">
+		                <label for="elderlyName">노인 이름:</label>
+		                <input type="text" class="form-control" id="elderlyName" name="elderlyName" placeholder="노인 이름 입력">
+		            </div>
+		            <div class="col-md-4 form-group mb-3">
+		                <label for="elderlyGender">노인 성별:</label>
+		                <select class="form-select" id="elderlyGender" name="elderlyGender">
+		                    <option value="male">남성</option>
+		                    <option value="female">여성</option>
+		                </select>
+		            </div>
+		        </div>
+		        <div class="col-md-4 form-group mb-3">
+		            <label for="matchingCountry">지역:</label>
+		            <input type="text" class="form-control" id="matchingCountry" name="matchingCountry" placeholder="지역 입력" required>
+		        </div>
+			    <div class="form-group mb-3">
+			        <label for="health">건강 상태:</label>
+                    <textarea id="health" name="health" class="form-control" rows="3" placeholder="건강 상태 입력" required></textarea>
+			    </div>
+			    <div class="form-group mb-3">
+			        <label for="requirements">요구 사항:</label>
+                    <textarea id="requirements" name="requirements" class="form-control" rows="3" placeholder="요구 사항 입력" required></textarea>
+			    </div>
+			    <!-- 보호자 유무 선택 (초기에는 숨김) -->
+			    <div id="guardianDetails" style="display: none;">
+			        <div class="col-md-4 form-group mb-3">
+			            <label for="hasGuardian">보호자 유무:</label>
+			            <select class="form-select" id="hasGuardian" name="hasGuardian">
+			                <option value="true">있음</option>
+			                <option value="false" selected>없음</option>
+			            </select>
+			        </div>
+			    </div>
+		        <!-- 보호자 정보 입력 필드 (초기에는 숨김) -->
+		        <div id="guardianInfo" style="display: none;">
+		            <div class="col-md-4 form-group mb-3">
+		                <label for="guardianName">보호자 이름:</label>
+		                <input type="text" class="form-control" id="guardianName" name="guardianName" placeholder="보호자 이름 입력">
+		            </div>
+		            <div class="col-md-4 form-group mb-3">
+		                <label for="relationship">본인과의 관계:</label>
+		                <input type="text" class="form-control" id="relationship" name="relationship" placeholder="관계 입력">
+		            </div>
+		        </div>
+			</div>
+    
+        <div class="card-body">
+            <input type="hidden" name="caregiverId" th:value="${caregiver != null ? caregiver.user.userId : null}" />
+            <div class="row">
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="startDate" class="form-label">시작 날짜</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control" required />
+                </div>
+                <div class="col">
+                    <label for="endDate" class="form-label">종료 날짜</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control" required />
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="startTime" class="form-label">시작 시간</label>
+                    <input type="time" id="startTime" name="startTime" class="form-control" required />
+                </div>
+                <div class="col">
+                    <label for="endTime" class="form-label">종료 시간</label>
+                    <input type="time" id="endTime" name="endTime" class="form-control" required />
+                </div>
+            </div>
+
+		    <!-- 매칭 요청 버튼 -->
+		    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmRequestModal">
+		      매칭 요청
+		    </button>
+		
+		    <!-- Modal -->
+		    <div class="modal fade" id="confirmRequestModal" tabindex="-1" aria-labelledby="confirmRequestLabel" aria-hidden="true">
+		      <div class="modal-dialog">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="confirmRequestLabel">매칭 요청 확인</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		          </div>
+		          <div class="modal-body">
+		            매칭 요청을 하시겠습니까?
+		          </div>
+		          <div class="modal-footer">
+		            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+		            <button type="button" class="btn btn-primary" onclick="submitRequestForm()">확인</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+        </div>
+		<script>
+		    document.getElementById('userRole').addEventListener('change', function () {
+		        var role = this.value;
+		        var elderlyInfo = document.getElementById('elderlyInfo');
+		        var guardianFields = document.getElementById('guardianFields');
+		        var guardianDetails = document.getElementById('guardianDetails');
+		        var guardianInfo = document.getElementById('guardianInfo');
+		        var hasGuardian = document.getElementById('hasGuardian');
+
+		        elderlyInfo.style.display = 'block';
+		
+		        if (role === 'guardian') {
+		            guardianFields.style.display = 'block';
+		            guardianDetails.style.display = 'none';
+		            guardianInfo.style.display = 'none';
+		        } else {
+		            guardianFields.style.display = 'none';
+		            guardianDetails.style.display = 'block';
+		            guardianInfo.style.display = 'none';
+		            hasGuardian.value = 'false';
+		        }
+		    });
+		
+		    document.getElementById('hasGuardian').addEventListener('change', function() {
+		        var guardianInfo = document.getElementById('guardianInfo');
+		        guardianInfo.style.display = this.value === 'true' ? 'block' : 'none';
+		    });
+		</script>
+
+	    </form>
+	
+	</div>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/mainLayout}">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lilita+One&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lilita+One&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+	rel="stylesheet">
+<meta charset="UTF-8">
+<!-- Bootstrap 5 CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<title>Main Page</title>
+</head>
+<!-- fabicon 에러해결용 -->
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<body>
+	<!-- 메인 콘텐츠 -->
+	<div layout:fragment="content" class="content">
+		<!-- 메인 콘텐츠 : 비주얼 이미지 슬라이드 -->
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-bs-ride="carousel" data-bs-interval="3000">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="0" class="active" aria-current="true"
+					aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/img/care1.png" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img src="/img/care2.png" class="d-block w-100" alt="...">
+				</div>
+				<div class="carousel-item">
+					<img src="/img/care3.jpg" class="d-block w-100" alt="...">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">이전</span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">다음</span>
+			</button>
+		</div>
+		<!-- 공지사항, 자유게시판 -->
+		<div class="main-board">
+			<h1>
+				<a href="/notice/list">공지사항</a>
+			</h1>
+			<hr>
+			<ul class="board-list">
+				<!-- NoticeController에서 전달된 공지사항 목록을 출력합니다. -->
+				<li th:each="notice : ${notices}" class="board-item"><a
+					th:href="@{'/notice/view/' + ${notice.num}}" class="board-link">
+						<span th:text="${notice.title}"></span> - <span
+						th:text="${notice.content}"></span>
+				</a></li>
+			</ul>
+			<h1>
+				<a href="/board/boardlist">자유게시판</a>
+			</h1>
+			<hr>
+			<ul class="board-list">
+				<!-- NoticeController에서 전달된 공지사항 목록을 출력합니다. -->
+				<li th:each="board : ${board}" class="board-item"><a
+					th:href="@{'/board/view/' + ${board.num}}" class="board-link">
+						<span th:text="${board.title}"></span> - <span
+						th:text="${board.content}"></span>
+				</a></li>
+			</ul>
+		</div>
+		<section class="care-section bg-light" id="services">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">요양보호사</h2>
+					<h3 class="section-subheading">따뜻한 마음으로 어르신을 돌보는 우리는 모두의
+						돌봄전문가.</h3>
+				</div>
+				<div class="row text-center">
+					<div class="col-md-4">
+						<span class="fa-stack fa-4x"> <i
+							class="fas fa-circle fa-stack-2x text-primary"></i> <i
+							class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+						</span>
+						<h4 class="my-3">신체활동 지원</h4>
+						<p class="text-muted">- 식사하기, 체위변경 및 이동하기, 화장실이용, 개인위생활동 및
+							몸단장, 신체기능 증진활동 등의 도움을 통해 안전하고 건강하게 돌봐드립니다.</p>
+					</div>
+					<div class="col-md-4">
+						<span class="fa-stack fa-4x"> <i
+							class="fas fa-circle fa-stack-2x text-primary"></i> <i
+							class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+						</span>
+						<h4 class="my-3">인지활동 지원</h4>
+						<p class="text-muted">
+							- 회상 훈련, 기억력 향상 활동, 남아있는<br> 기능의 유지‧향상을 위한 인지자극활동 등을<br>
+							통해 건망이 아닌 건강을 챙겨드립니다.
+						</p>
+					</div>
+					<div class="col-md-4">
+						<span class="fa-stack fa-4x"> <i
+							class="fas fa-circle fa-stack-2x text-primary"></i> <i
+							class="fas fa-lock fa-stack-1x fa-inverse"></i>
+						</span>
+						<h4 class="my-3">일상생활 및 정서 지원</h4>
+						<p class="text-muted">
+							- 어르신의 방 안 청소 및 주변정돈, 식사준비,<br> 말벗, 의사소통 도움, 외출 동행 등을 통해<br>
+							외롭지 않고 즐거운 일상을 보내게 됩니다.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="care-section" id="portfolio">
+			<div class="container">
+				<div class="text-center">
+					<h2 class="section-heading text-uppercase">50000명이 THE 홈케어를 찾는
+						이유</h2>
+					<h3 class="section-subheading">이런 분들께 필요한 것들을 알고 있기 때문이죠!</h3>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-6 mb-4">
+						<!-- Portfolio item 1-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal1">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/need1.jpg" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 mb-4">
+						<!-- Portfolio item 2-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal2">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/needy.png" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 mb-4">
+						<!-- Portfolio item 3-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal3">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/need2.jpg" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+						<!-- Portfolio item 4-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal4">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/need3.jpg" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+						<!-- Portfolio item 5-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal5">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/need4.jpg" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6">
+						<!-- Portfolio item 6-->
+						<div class="portfolio-item">
+							<a class="portfolio-link" data-bs-toggle="modal"
+								href="#portfolioModal6">
+								<div class="portfolio-hover">
+									<div class="portfolio-hover-content">
+										<i class="fas fa-plus fa-3x"></i>
+									</div>
+								</div> <img class="img-fluid" src="/img/need5.jpg" alt="..." />
+							</a>
+							<div class="portfolio-caption">
+								<div class="portfolio-caption-heading"></div>
+								<div class="portfolio-caption-subheading text-muted"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

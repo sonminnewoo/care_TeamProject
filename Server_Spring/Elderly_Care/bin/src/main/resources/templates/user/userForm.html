@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<head>
+
+<!-- 사용자 CSS 추가 -->
+<style>
+    .fieldError {
+        color: red;
+    }
+</style>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css" integrity="sha512-0H1C2wjjtLx7UWv8XlmK5B4SX+BhOKVyd2FiJ5F3e2kqTO5YItd1EzL+KLknagQeZrUfVcEPFidG6xnUvDfJTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/login.css">
+</th:block>
+
+
+<!-- 사용자 스크립트 추가 -->
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var loginErrorMsg = /*[[${loginErrorMsg}]]*/ 'default message';
+        if (loginErrorMsg && loginErrorMsg !== 'default message') {
+            alert(loginErrorMsg);
+        }
+        /*]]>*/
+    </script>
+</th:block>
+<title>회원 가입 페이지</title>
+</head>
+
+<body>
+<div layout:fragment="content" class="content">
+    <form th:action="@{/user/register}" th:object="${userFormDto}" method="post">
+        <div class="form-group">
+            <label for="name">이름:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="이름을 입력해주세요">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">이메일주소:</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="이메일을 입력해주세요">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력해주세요">
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">비밀번호 확인:</label>
+            <input type="password" id="confirmPassword" th:field="*{confirmPassword}" class="form-control" placeholder="비밀번호를 다시 입력해주세요">
+            <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">전화번호:</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="전화번호를 입력해주세요">
+            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="address">주소:</label>
+            <input type="text" id="address" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
+            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="country">지역:</label>
+            <div class="select-wrapper">
+                <select id="country" th:field="*{country}" class="form-control custom-select">
+                    <option value="">지역을 선택해주세요</option>
+                    <option value="Seoul">서울</option>
+                    <option value="Busan">부산</option>
+                    <option value="Jeju">제주도</option>
+                    <option value="Incheon">인천</option>
+                    <option value="Daegu">대구</option>
+                    <option value="Gwangju">광주</option>
+                    <option value="Daejeon">대전</option>
+                    <option value="Ulsan">울산</option>
+                    <option value="Sejong">세종</option>
+                    <option value="Gyeonggi">경기도</option>
+                    <option value="Gangwon">강원도</option>
+                    <option value="Chungbuk">충청북도</option>
+                    <option value="Chungnam">충청남도</option>
+                    <option value="Jeonbuk">전라북도</option>
+                    <option value="Jeonnam">전라남도</option>
+                    <option value="Gyeongbuk">경상북도</option>
+                    <option value="Gyeongnam">경상남도</option>
+                </select>
+                <i class="bi bi-caret-down-square select-icon"></i>
+            </div>
+            <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="image">이미지 URL:</label>
+            <input type="text" id="image" th:field="*{image}" class="form-control" placeholder="이미지 URL을 입력해주세요">
+            <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="fieldError"></div>
+        </div>
+        <div class="form-group">
+            <label for="gender">성별:</label>
+            <div class="select-wrapper">
+                <select id="gender" th:field="*{gender}" class="form-control custom-select">
+                    <option value="">성별을 선택해주세요</option>
+                    <option value="Male">남자</option>
+                    <option value="Female">여자</option>
+                </select>
+                <i class="bi bi-caret-down-square select-icon"></i>
+            </div>
+            <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="fieldError"></div>
+        </div>
+<div th:if="${userType == 'senior'}">
+    <!-- 시니어 정보 입력 필드 -->
+    <!-- <div class="form-group">
+        <label for="seniorName">시니어 이름:</label>
+        <input type="text" id="seniorName" name="seniorName" class="form-control" placeholder="시니어 이름을 입력해주세요">
+    </div> -->
+
+<div class="form-group">
+    <label for="health">건강 상태:</label>
+    <input type="text" id="health" name="health" class="form-control" placeholder="건강 상태를 입력해주세요">
+</div>
+
+<div class="form-group">
+    <label for="requirements">특별 요구 사항:</label>
+    <input type="text" id="requirements" name="requirements" class="form-control" placeholder="특별 요구 사항을 입력해주세요">
+</div>
+
+<div class="form-group">
+    <label>
+        <input type="checkbox" id="hasGuardian" name="hasGuardian"> 보호자가 있나요?
+    </label>
+</div>
+
+<!-- 가디언 정보 입력 필드, 보호자가 있을 경우에만 나타남 -->
+<div id="guardianInfo" style="display: none;">
+    <div class="form-group">
+        <label for="guardianName">보호자 이름:</label>
+        <input type="text" id="guardianName" name="guardianName" class="form-control" placeholder="보호자 이름을 입력해주세요">
+    </div>
+
+    <div class="form-group">
+        <label for="guardianNumber">보호자 전화번호:</label>
+        <input type="text" id="guardianNumber" name="guardianNumber" class="form-control" placeholder="보호자 전화번호를 입력해주세요">
+    </div>
+
+    <div class="form-group">
+        <label for="relationship">관계:</label>
+        <input type="text" id="relationship" name="relationship" class="form-control" placeholder="보호자와의 관계를 입력해주세요">
+    </div>
+</div>
+
+<script>
+    document.getElementById('hasGuardian').addEventListener('change', function() {
+        var display = this.checked ? 'block' : 'none';
+        document.getElementById('guardianInfo').style.display = display;
+    });
+</script>
+</div>
+
+<div th:if="${userType == 'caregiver'}">
+    <div class="form-group">
+        <label for="certification">자격증:</label>
+        <input type="text" id="certification" name="certification" class="form-control" placeholder="자격증을 입력해주세요">
+    </div>
+    <div class="form-group">
+        <label for="specialization">전문 분야:</label>
+        <input type="text" id="specialization" name="specialization" class="form-control" placeholder="전문 분야를 입력해주세요">
+    </div>
+    <div class="form-group">
+        <label for="experience">경험:</label>
+        <textarea id="experience" name="experience" class="form-control" placeholder="경험을 입력해주세요"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="experienceYears">경험 연수:</label>
+        <input type="number" id="experienceYears" name="experienceYears" class="form-control" placeholder="경험 연수를 입력해주세요">
+    </div>
+    <div class="form-group">
+        <label for="availableHours">가능한 근무 시간:</label>
+        <input type="text" id="availableHours" name="availableHours" class="form-control" placeholder="가능한 근무 시간을 입력해주세요">
+    </div>
+</div>
+<input type="hidden" name="userType" th:value="${userType}" />
+<div th:if="${errorMessage}" class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-primary">가입하기</button>
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </form>
+</div>
+</body>
+
+</html>

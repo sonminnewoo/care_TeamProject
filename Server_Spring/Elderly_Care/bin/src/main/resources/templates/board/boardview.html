@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content" class="content">
+	<body>
+		<div class="container">
+			<!-- 게시글 정보 표시 -->
+			<h3 th:text="${board.title}"></h3>
+			<div class="mb-3">
+				<label for="num">No:</label> <input type="text" class="form-control"
+					id="num" th:value="${board.num}" th:data-board-num="${board.num}"
+					readonly="readonly">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="title">제목:</label> <input type="text"
+					class="form-control" id="title" th:value="${board.title}"
+					readonly="readonly">
+			</div>
+			<div class="mb-3">
+				<label for="writer">작성자:</label> <input type="text"
+					class="form-control" id="writer" th:value="${board.user.name}"
+					th:data-board-user-id="${board.user.userId}" readonly="readonly"
+					name="writer">
+			</div>
+			<div class="mb-3 mt-3">
+				<label for="content">내용:</label>
+				<textarea class="form-control" rows="7" id="content" name="content"
+					readonly="readonly" th:text="${board.content}"></textarea>
+			</div>
+
+
+			<!-- 게시글 수정, 삭제, 뒤로가기 버튼 -->
+			<div>
+				<div class="text-end">
+					<button type="button" class="btn btn-secondary btn-sm"
+						id="btnUpdate" onclick="updateBoard()">수정</button>
+					<button type="button" class="btn btn-danger btn-sm" id="btnDelete"
+						onclick="deleteBoard()">삭제</button>
+					<button type="button" class="btn btn-success btn-sm" id="btnDelete"
+						onclick="goBack()">뒤로가기</button>
+				</div>
+			</div>
+
+
+
+			<!-- 댓글 작성 폼 -->
+			<div class="mb-3 mt-3">
+				<label for="msg">댓글:</label>
+				<textarea class="form-control" rows="3" id="msg" name="msg"></textarea>
+			</div>
+			<div class="text-end">
+				<button type="submit" class="btn btn-success btn-sm" id="commentBtn"
+					onclick="postComment()">댓글 작성</button>
+			</div>
+			<div id="replyResult" class="mt-3"></div>
+
+
+
+			<!-- 댓글 리스트 -->
+			<label for="msg">댓글 목록:</label>
+			<div class="card">
+				<ul id="reply--box" class="list-group">
+					<li id="reply--1"
+						class="list-group-item d-flex justify-content-between">
+						<div id="replyResult">댓글 내용입니다.
+					</li>
+				</ul>
+			</div>
+			<div class="text-end">
+				<div class="text-monospace">작성자:김누구</div>
+			</div>
+			<div class="text-end">
+				<button class="btn btn-secondary btn-sm">수정</button>
+				<button class="btn btn-danger btn-sm">삭제</button>
+			</div>
+		</div>
+</div>
+
+<!-- 수정폼과 스크립트 -->
+		<th:block layout:fragment="script">
+			<script type="text/javascript">
+				// 게시글 수정
+				function updateBoard() {
+					if (!confirm('수정하시겠습니까?')) {
+						return false;
+					}
+					var boardNum = document.getElementById("num").getAttribute(
+							"data-board-num");
+					location.href = "/board/boardupdate/" + boardNum;
+				}
+
+				// 게시글 삭제
+				function deleteBoard() {
+					var boardNum = document.getElementById("num").getAttribute(
+							"data-board-num");
+					if (!confirm(boardNum + '번 게시글을 삭제하시겠습니까?')) {
+						return false;
+					}
+					alert(boardNum + "번 삭제 완료");
+					location.href = "/board/delete/" + boardNum;
+				}
+
+				// 뒤로 가기
+				function goBack() {
+					location.href = "/board/boardlist";
+				}
+
+				// 댓글 작성
+				function postComment() {
+					var boardNum = document.getElementById("num").getAttribute(
+							"data-board-num");
+					var boardUserId = document.getElementById("writer")
+							.getAttribute("data-board-user-id");
+					var comment = document.getElementById("msg").value;
+					var csrfToken = $("meta[name='_csrf']").attr("content");
+					var csrfHeader = $("meta[name='_csrf_header']").attr(
+							"content");
+					console.log(boardNum);
+					console.log(boardUserId);
+					console.log(comment);
+					$
+							.ajax({
+								type : "POST",
+								url : "/comments/create",
+								contentType : 'application/json',
+								data : JSON.stringify({
+									board : {
+										num : boardNum,
+									},
+									content : comment,
+									user : {
+										userId : boardUserId
+									}
+								}),
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(csrfHeader, csrfToken);
+								},
+								success : function(resp) {
+									alert("댓글 작성 완료");
+									location.href = "/board/boardview/"+boardNum;
+								},
+								error : function(xhr, status, e) {
+									alert("수정실패 : " + e);
+								}
+							});
+				}
+				
+				
+				window.onload = () => {
+				        findAllComment();
+				    }
+				// 댓글 불러오기
+				function findAllComment(boardNum) {
+					var boardNum = document.getElementById("num").getAttribute(
+					"data-board-num");
+					$.ajax({
+								url : "/comments/list/"+boardNum,
+								type : "GET",
+								data : JSON.stringify({
+									boardNum : boardNum
+								}),
+								success : function(resp) {
+									console.log(response);
+									for (var i = 0; i < response.length; i++) {
+										var comment = response[i];
+										var commentHTML = "<div class='mb-2'><strong>"
+												+ comment.user
+												+ "</strong>: "
+												+ comment.content + "</div>";
+										alert("댓글 작성 완료");
+									}
+								},
+								error : function(xhr, status, error) {
+									alert("댓글 목록을 불러오는 데 실패했습니다. : " + e);
+								}
+							});
+				}
+			</script>
+		</th:block>
+	</body>
+</div>
+</html>

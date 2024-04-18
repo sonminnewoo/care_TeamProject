@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content" class="content">
+    <h2>구직 정보</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>지역</th>
+                <th>구직기간</th>
+                <th>업무시간</th>
+                <th>상태</th>
+                <th>상세정보</th>
+                <th sec:authorize="hasRole('CAREGIVER')">매칭</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="matching : ${matchingsPage}">
+	            <td th:text="${matching.matchingCountry}">지역</td>
+                <td><span th:text="${matching.startDate} + ' ~ '"></span><span th:text="${matching.endDate}"></span></td>
+                <td><span th:text="${matching.startTime} + ' ~ '"></span><span th:text="${matching.endTime}"></span></td>
+                <td th:text="${matching.status.toString() == 'POSTED' ? '구직 중' : 
+                              matching.status.toString() == 'REQUESTED' ? '요청 중' : 
+                              matching.status.toString() == 'IN_PROGRESS' ? '진행 중' : 
+                              matching.status.toString() == 'COMPLETED' ? '완료됨' : 
+                              matching.status.toString() == 'CANCELLED' ? '취소됨' : '?'}"></td>
+                <td><a th:href="@{/matching/findjob/detail(matchingId=${matching.id})}" class="btn btn-info">상세 보기</a></td>
+                <td><a th:if="${matching.status.toString() == 'POSTED'}"
+                th:href="@{/matching/create(matchingId=${matching.id})}"
+                sec:authorize="hasRole('CAREGIVER')"
+                class="btn btn-primary">매칭</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">        
+	    <a th:href="@{/matching/request}" class="btn btn-primary">매칭 신청</a>
+    </div>
+    <!-- 페이지네이션 -->
+<nav>
+    <ul class="pagination d-flex justify-content-center">
+        <li class="page-item" th:classappend="${matchingsPage.first} ? 'disabled'">
+            <a class="page-link" th:href="@{/matching/findjob(page=${matchingsPage.number - 1})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li th:each="pageNum : ${#numbers.sequence(0, matchingsPage.totalPages == 0 ? 0 : matchingsPage.totalPages - 1)}" class="page-item" th:classappend="${pageNum == matchingsPage.number} ? 'active'">
+            <a class="page-link" th:href="@{/matching/findjob(page=${pageNum})}" th:text="${pageNum + 1}">1</a>
+        </li>
+        <li class="page-item" th:classappend="${matchingsPage.last} ? 'disabled'">
+            <a class="page-link" th:href="@{/matching/findjob(page=${matchingsPage.number + 1})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+</div>
+</html>
