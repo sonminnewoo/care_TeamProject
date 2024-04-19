@@ -10,6 +10,7 @@ data class UserFormDto(
     val gender: String,
     val phoneNumber: String,
     val image: String?,
+    val userType: String?,
     val seniorName: String?,
     val health: String?,
     val requirements: String?,
